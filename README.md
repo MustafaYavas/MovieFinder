@@ -1,7 +1,7 @@
 # MovieFinder - Search Movies
 
 Simple movie search app created with React.js and Bootstrap.
-[Check it out here!]()
+[Check it out here!](https://movies-2ce3f.web.app/home)
 
 ## Table of Contents
 * [Technologies](#technologies)
