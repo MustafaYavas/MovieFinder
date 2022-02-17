@@ -1,0 +1,10 @@
+@media only screen and (max-width: 578px) {
+    .center-header {
+      text-align:center;
+    }
+
+    .center-select {
+        display: flex;
+        justify-content: center;
+    }
+}

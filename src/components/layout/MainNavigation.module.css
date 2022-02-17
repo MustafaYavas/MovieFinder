@@ -1,0 +1,26 @@
+.navbar-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button {
+    border: none;
+    background-color: #212529;
+}
+
+@media only screen and (max-width: 500px) {
+    .links-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}
+

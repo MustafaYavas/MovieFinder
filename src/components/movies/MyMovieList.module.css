@@ -1,0 +1,18 @@
+@media only screen and (min-width: 250px) {
+    .height {
+      margin-bottom: 24.6rem;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+  .show-close-icon {
+    display: inline-block !important;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .show-button {
+    display: inline-block !important;
+  }
+}

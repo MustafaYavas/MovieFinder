@@ -1,0 +1,23 @@
+.form-bg {
+    background-color: black;
+}
+
+.button {
+    border: none;
+    background-color: black;
+    color: #DC3545;
+}
+
+.button:hover {
+    text-decoration: underline;
+}
+
+.link {
+    text-decoration: none;
+    color: #DC3545;
+}
+
+.link:hover {
+    color: #DC3545;
+    text-decoration: underline;
+}
