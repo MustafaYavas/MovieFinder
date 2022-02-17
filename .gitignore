@@ -24,3 +24,11 @@ yarn-error.log*
 
 # env
 .env
+
+# firebase
+.firebase
+.firebaserc
+firebase.json
+
+# github
+.github
