@@ -17,7 +17,6 @@ const MainNavigation = () => {
     return (
         <div className={`bg-dark ${styles['navbar-sticky']}`}>
             <div className={`container p-3 ${styles['navbar-logo']} ${styles['links-flex']}`}>
-                
                 <div>
                     <NavLink to="/home" className={navData => navData.isActive ? 'text-danger text-decoration-none fs-5' : 'text-decoration-none text-light fs-5'}>
                         <i className="fas fa-meteor me-2"></i>
