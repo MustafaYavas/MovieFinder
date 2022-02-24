@@ -30,7 +30,7 @@ const MainNavigation = () => {
                     }
 
                     {
-                        !authState.isLoggedIn && <NavLink to="/login" className={navData => navData.isActive ? 'text-danger me-5 text-decoration-none fs-5' : 'me-5 text-decoration-none text-light fs-5' }>Login</NavLink>
+                        !authState.isLoggedIn && <NavLink to="/login" className={navData => navData.isActive ? 'text-danger text-decoration-none fs-5' : 'text-decoration-none text-light fs-5' }>Login</NavLink>
                     }
 
                     {
