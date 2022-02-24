@@ -1,11 +1,12 @@
 @media only screen and (max-width: 578px) {
-    .card-flex {
+    .center-header {
+      text-align:center;
+    }
+
+    .center-select {
         display: flex;
         justify-content: center;
     }
-    
-    .card-width {
-        width: 18rem;
-    }
+
     
 }

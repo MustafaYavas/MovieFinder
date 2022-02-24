@@ -1,7 +1,7 @@
-import Movie from './MovieItem';
+import MovieItem from './MovieItem';
 import { movieActions } from '../../store/movie-slice';
 import LoadingSpinner from '../UI/LoadingSpinner';
-import styles from './MovieItem.module.css';
+import styles from './Movies.module.css';
 
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
@@ -72,7 +72,7 @@ const Movies = () => {
                     {isLoading && <LoadingSpinner/>}
                     {!isLoading && 
                         movieState.startingPageMovies.map(movie => (
-                            <Movie 
+                            <MovieItem 
                                 key={movie.id}
                                 id={movie.id}
                                 poster={movie.poster_path}
