@@ -15,4 +15,12 @@
   .show-button {
     display: inline-block !important;
   }
+
+  .margin-top-sm {
+    margin-top: 1rem;
+  }
+
+  .center-img {
+    text-align: center;
+  }
 }
