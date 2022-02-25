@@ -1,8 +1,9 @@
-import styles from "./MainNavigation.module.css";
+import styles from './MainNavigation.module.css';
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { authActions } from "../../store/auth-slice";
+import { authActions } from '../../store/auth-slice';
+import { Navbar, Container, Nav } from  'react-bootstrap'
 
 const MainNavigation = () => {
     const authState = useSelector(state => state.auth);
@@ -15,33 +16,38 @@ const MainNavigation = () => {
     }
 
     return (
-        <div className={`bg-dark ${styles['navbar-sticky']}`}>
-            <div className={`container p-3 ${styles['navbar-logo']} ${styles['links-flex']}`}>
-                <div>
-                    <NavLink to="/home" className={navData => navData.isActive ? 'text-danger text-decoration-none fs-5' : 'text-decoration-none text-light fs-5'}>
-                        <i className="fas fa-meteor me-2"></i>
+  
+        <Navbar collapseOnSelect expand='sm' bg='dark' variant='dark'  sticky='top'>
+            <Container>
+                <NavLink to='/home' className={navData => navData.isActive ? 'text-danger text-decoration-none fs-5' : 'text-decoration-none text-light fs-5'}>
+                        <i className='fas fa-meteor me-2'></i>
                         MovieFinder
-                    </NavLink>
-                </div>
-                <div>
-                    {
-                        authState.isLoggedIn && <NavLink to="/my-list" className={navData => navData.isActive ? 'text-danger me-5 text-decoration-none fs-5' : 'me-5 text-decoration-none text-light fs-5' }>My List</NavLink>
-                    }
+                </NavLink>
+                <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+                
+                <Navbar.Collapse id='responsive-navbar-nav ' className='justify-content-end'>
+                    
+                    <Nav>
+                        {
+                            authState.isLoggedIn && <NavLink to='/my-list' className={navData => navData.isActive ? 'nav-link text-danger me-5 text-decoration-none fs-5' : 'nav-link me-5 text-decoration-none text-light fs-5' }>My List</NavLink>
+                        }
 
-                    {
-                        !authState.isLoggedIn && <NavLink to="/login" className={navData => navData.isActive ? 'text-danger text-decoration-none fs-5' : 'text-decoration-none text-light fs-5' }>Login</NavLink>
-                    }
+                        {
+                            !authState.isLoggedIn && <NavLink to='/login' className={navData => navData.isActive ? 'nav-link text-danger text-decoration-none fs-5 me-5' : 'nav-link text-decoration-none text-light fs-5 me-5' }>Login</NavLink>
+                        }
 
-                    {
-                        authState.isLoggedIn && <NavLink to="/profile" className={navData => navData.isActive ? 'text-danger text-decoration-none fs-5' : 'text-decoration-none text-light fs-5' }>Profile</NavLink>
-                    }
+                        {
+                            authState.isLoggedIn && <NavLink to='/profile' className={navData => navData.isActive ? 'nav-link text-danger text-decoration-none fs-5 me-5' : 'nav-link text-decoration-none text-light fs-5 me-5' }>Profile</NavLink>
+                        }
 
-                    {
-                        authState.isLoggedIn && <button onClick={logoutHandler} className={`ms-5 fs-5 text-light ${styles.button}`}>Logout</button>
-                    }
-                </div>
-            </div>
-        </div>
+                        {
+                            authState.isLoggedIn && <button onClick={logoutHandler} className={`text-start nav-link fs-5 text-light ${styles.button}`}>Logout</button>
+                        }
+                    </Nav>
+                </Navbar.Collapse>
+
+            </Container>
+        </Navbar>
     )
 }
 
