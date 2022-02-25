@@ -12,12 +12,12 @@ const MainNavigation = () => {
 
     const logoutHandler = () => {
         dispatch(authActions.logoutHandler());
-        navigate('/home', { replace: true });
+        navigate('/login', { replace: true });
     }
 
     return (
   
-        <Navbar collapseOnSelect expand='sm' bg='dark' variant='dark'  sticky='top'>
+        <Navbar collapseOnSelect expand='sm' bg='dark' variant='dark' sticky='top'>
             <Container>
                 <NavLink to='/home' className={navData => navData.isActive ? 'text-danger text-decoration-none fs-5' : 'text-decoration-none text-light fs-5'}>
                         <i className='fas fa-meteor me-2'></i>
@@ -26,7 +26,6 @@ const MainNavigation = () => {
                 <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                 
                 <Navbar.Collapse id='responsive-navbar-nav ' className='justify-content-end'>
-                    
                     <Nav>
                         {
                             authState.isLoggedIn && <NavLink to='/my-list' className={navData => navData.isActive ? 'nav-link text-danger me-5 text-decoration-none fs-5' : 'nav-link me-5 text-decoration-none text-light fs-5' }>My List</NavLink>
