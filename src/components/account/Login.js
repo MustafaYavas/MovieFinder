@@ -13,14 +13,16 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const switchAuthModeHandler = () => {
+    const switchAuthModeHandler = (e) => {
+        e.preventDefault();
         setIsLogin(prevState => !prevState);
         emailInputRef.current.value = '';
         if(!isLogin) nameInputRef.current.value = '';
         passwordInputRef.current.value = ''
     }
 
-    const authHandler = async() => {
+    const authHandler = async(e) => {
+        e.preventDefault();
         const enteredEmail = emailInputRef.current.value;
         const enteredPassword = passwordInputRef.current.value;
 
@@ -65,33 +67,39 @@ const Login = () => {
             }
     }
 
-    return (
-        <div className={`container mt-5 w-50 p-5 rounded ${styles['form-bg']}`}>
-            
-            <h3 className="text-center text-danger mb-5">{isLogin ? 'Login' : 'Join Us!'}</h3>
-            <div className="form-floating mb-3">
-                <input type="email" className="form-control" id="email" ref={emailInputRef} placeholder="email@example.com" />
-                <label htmlFor="email">Email address</label>
-            </div>
-            {
-                !isLogin ? 
-                <div className="form-floating mb-3">
-                    <input type="email" className="form-control" id="name" ref={nameInputRef} placeholder="Name" />
-                    <label htmlFor="name">Name</label>
-                </div> : null
-            }
-            <div className="form-floating">
-                <input type="password" className="form-control" id="password" ref={passwordInputRef} placeholder="Password" />
-                <label htmlFor="password">Password</label>
-            </div>
+    return (        
+        <div className=' d-flex flex-column justify-content-center align-items-center'>
+            <h4 className="text-center text-danger mt-5 mb-3">{isLogin ? 'Login to MovieFinder' : 'Join Us!'}</h4>
 
-            <div className="mt-3">
-                <p className='text-light'> {isLogin ? "Don't have an account ?" : 'Already have an account ?'} <button onClick={switchAuthModeHandler} className={styles.button}>{isLogin ? 'Sign up' : 'Log in'}</button></p>
-            </div>
+            <form className={`rounded p-5 ${styles['form-bg']}`} onSubmit={authHandler}>
+                <div className="mb-3 form-group">
+                    <label htmlFor="email" className="form-label">Email address</label>
+                    <input type="text" className="form-control" id="email"  ref={emailInputRef}/>
+                </div>
 
-            <div className="d-grid gap-2 mt-4">
-                <button onClick={authHandler} className="btn btn-md btn-outline-danger">{!isLogin ? 'Sign up' : 'Login'}</button>
-            </div>
+                {
+                    !isLogin &&
+                    <div className="mb-3 form-group">
+                        <label htmlFor="name" className="form-label">Name</label>
+                        <input type="text" className="form-control" id="name" ref={nameInputRef} />
+                    </div> 
+                }
+
+                <div className="mb-3 form-group">
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input type="password" className="form-control" id="password" ref={passwordInputRef}/>
+                </div>
+
+                <div className="mt-3">
+                    <p className='text-dark'> {isLogin ? "Don't have an account? " : 'Already have an account? '}
+                        <a href='/' onClick={switchAuthModeHandler} className={styles.link}>{isLogin ? 'Sign up' : 'Log in'}</a>
+                    </p>
+                </div>
+
+                <div className="col-12 text-center">
+                    <button type="submit" className="btn btn-danger">{!isLogin ? 'Sign up' : 'Login'}</button>
+                </div>
+            </form>
         </div>
     )
 }
