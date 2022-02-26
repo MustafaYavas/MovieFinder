@@ -3,15 +3,9 @@
 }
 
 .scroll-wrapper{
-    height: 23.5rem;
+    height: 20rem;
     display: flex;
     overflow-x: auto;
-}
-
-
-::-webkit-scrollbar-thumb:horizontal{
-    background: #BB2D3B;
-    border-radius: .5rem;
 }
 
 

@@ -10,15 +10,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const MovieDetail = (props) => {
-    const {movie, similars} = props;
+    const {movie, similars, genres} = props;
     const [showAlert, setShowAlert] = useState(false);
     
     const authState = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate()
-
-
-
 
    
     const addMovieToListHandler = () => {
@@ -40,6 +37,7 @@ const MovieDetail = (props) => {
         navigate(`/movie/${id}`, { replace: false });
     }
 
+
     useEffect(() => {
         setTimeout(() => {
             setShowAlert(false)
@@ -57,9 +55,11 @@ const MovieDetail = (props) => {
                         <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`} alt='movie_img' />}
                     </div>
 
-                    <div className='col-12 col-md-8 col-lg-9 mt-2 text-light'>
+                    <div className='col-12 col-md-8 col-lg-9 mt-3 text-light'>
                         <h2>{movie.original_title}</h2>
                         <h6>{movie.tagline}</h6>
+
+                        <p>{genres}</p>
 
                         <div className='d-flex justify-content-start align-items-center mt-3'>
                             <button className='btn btn-danger rounded me-3'  data-tip data-for="imdb">{movie.vote_average}</button>  
@@ -72,21 +72,14 @@ const MovieDetail = (props) => {
                                 Duration
                             </ReactTooltip>
 
-                            <button onClick={addMovieToListHandler} className='btn btn-danger rounded-circle' data-tip data-for="addListTip">
-                                <i className="fa-solid fa-list"></i>
+                            <button onClick={addMovieToListHandler} className='btn btn-success rounded-circle' data-tip data-for="addListTip">
+                                <i className="fa-solid fa-plus"></i>
                             </button>
                             <ReactTooltip id="addListTip" place="right" effect="solid">
                                 Add to List
                             </ReactTooltip>
                         </div>
 
-                        {/* <div className='d-flex '>
-                            {
-                                movie.genres.map(genre => {
-                                    return <p className='text-light'>{`${genre.name}`}</p>
-                                })
-                            }
-                        </div> */}
                         <div>
                             <h4 className='mt-2'>Release Date</h4>
                             <p>{movie.release_date}</p>
@@ -97,10 +90,6 @@ const MovieDetail = (props) => {
                             <p>{movie.overview}</p>
                         </div>
 
-                        {/* <div>
-                            <h4 className='mt-2'>Revenue</h4>
-                            <p>{`$ ${movie.revenue}`}</p>
-                        </div> */}
                     </div>
                 </div>
             </div>
@@ -111,16 +100,13 @@ const MovieDetail = (props) => {
                 <div className={`my-4 ${styles['scroll-wrapper']}`}>
                     {
                         similars.map(movie => {
-                            return <div onClick={() => movieDetailHandler(movie.id)} className={`mb-5 ${styles['scroll-wrapper-item']}`} key={movie.id}>
+                            return <div onClick={() => movieDetailHandler(movie.id)} role='button' className={`mb-5 ${styles['scroll-wrapper-item']}`} key={movie.id}>
                             <div className="mb-4">
                                 <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`} className={`card-img-top ${styles['img-radius']}`} alt="Movie Img"/>
-                                <div className="card-body">
-                                    <h6 className="card-title fw-bold text-center">{movie.title}</h6>
-                                </div>
+                                
                             </div>
                         </div>
                         })
-
                     }
                 </div>
             </div>

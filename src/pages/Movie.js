@@ -8,6 +8,7 @@ const Movie = () => {
     const params = useParams();
     const [movie, setMovie] = useState({})
     const [similarMovies, setSimilarMovies] = useState([])
+    const [genres, setGenres] = useState('');
     
     useEffect( () => {
         let fetchMovieDetail = async () => {
@@ -19,6 +20,12 @@ const Movie = () => {
             setMovie(movieInfos.data);
             setSimilarMovies(similar.data.results);
 
+            setGenres('');
+
+            for(let i=0; i< movieInfos.data.genres.length; i++){
+                if(i===movieInfos.data.genres.length-1) setGenres(prevState => prevState + movieInfos.data.genres[i].name);
+                else setGenres(prevState => prevState + `${movieInfos.data.genres[i].name}, `)
+            }
             
         }
         
@@ -28,7 +35,7 @@ const Movie = () => {
     
 
     return (
-        <MovieDetail movie={movie} similars={similarMovies}/>
+        <MovieDetail movie={movie} similars={similarMovies} genres={genres}/>
     )
 }
 

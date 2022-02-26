@@ -77,6 +77,7 @@ const Movies = () => {
                                 id={movie.id}
                                 poster={movie.poster_path}
                                 title={movie.original_title}
+                                rate={movie.vote_average}
                             />
                         ))
                         
