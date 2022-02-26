@@ -19,11 +19,12 @@ const MainNavigation = () => {
   
         <Navbar collapseOnSelect expand='sm' bg='dark' variant='dark' sticky='top'>
             <Container>
+                <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+
                 <NavLink to='/home' className={navData => navData.isActive ? 'text-danger text-decoration-none fs-5' : 'text-decoration-none text-light fs-5'}>
                         <i className='fas fa-meteor me-2'></i>
                         MovieFinder
                 </NavLink>
-                <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                 
                 <Navbar.Collapse id='responsive-navbar-nav ' className='justify-content-end'>
                     <Nav>
