@@ -7,7 +7,7 @@ import axios from "axios";
 const Movie = () => {
     const params = useParams();
     const [movie, setMovie] = useState({})
-    const [similarMovies, setSimilarMovies] = useState({})
+    const [similarMovies, setSimilarMovies] = useState([])
     
     useEffect( () => {
         let fetchMovieDetail = async () => {
