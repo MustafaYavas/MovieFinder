@@ -3,6 +3,7 @@ import Alert from '../UI/Alert';
 import { movieActions } from '../../store/movie-slice';
 import { convertToDate } from '../../store/utility-actions';
 import LoadingSpinner from '../UI/LoadingSpinner';
+import ReactPlayer from 'react-player';
 
 import ReactTooltip from "react-tooltip";
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,14 +11,14 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const MovieDetail = (props) => {
-    const {movie, similars, genres} = props;
+    const {movie, similars, genres, videos} = props;
     const [showAlert, setShowAlert] = useState(false);
+    const [videoSize, setVideoSize] = useState({width: '640px', height: '360px'});
     
     const authState = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
-   
     const addMovieToListHandler = () => {
         if(authState.isLoggedIn) {
             const addDate = convertToDate(new Date());
@@ -32,9 +33,22 @@ const MovieDetail = (props) => {
         }
     }
 
-
     const movieDetailHandler = (id) => {
         navigate(`/movie/${id}`, { replace: false });
+    }
+
+    const videoStartHandler = () => {
+        setVideoSize({
+            width: '1080px',
+            height: '540px'
+        })
+    }
+
+    const videoEndHandler = () => {
+        setVideoSize({
+            width: '640px',
+            height: '360px'
+        })
     }
 
 
@@ -48,7 +62,7 @@ const MovieDetail = (props) => {
         <>
             {showAlert && <Alert message='Movie Added to List'/>}
             <div className={`container-fluid ${styles['bg-color']}`}>
-                <div className='row mt-5 '>
+                <div className='row'>
                     <div className='col-12 col-md-4 col-lg-3 p-3 my-auto'>
                         {!movie.poster_path && <LoadingSpinner />}
                         {movie.poster_path && 
@@ -94,10 +108,26 @@ const MovieDetail = (props) => {
                 </div>
             </div>
 
+            <div className='container-fluid mt-5'>
+                <h3 className='text-danger'>Official Trailer</h3>
+                <div className='mt-3'>
+                    <ReactPlayer 
+                        url={`https://www.youtube.com/watch?v=${videos.key}`} 
+                        controls
+                        width={videoSize.width}
+                        height={videoSize.height}
+                        onStart={videoStartHandler}
+                        onPlay={videoStartHandler}
+                        onEnded={videoEndHandler}
+                        onPause={videoEndHandler}
+                    />
+                </div>
+            </div>
+
 
             <div className='container-fluid mt-5'>
-                <h2 className='text-danger'>Similar Movies</h2>
-                <div className={`my-4 ${styles['scroll-wrapper']}`}>
+                <h3 className='text-danger'>Similar Movies</h3>
+                <div className={`mt-3 ${styles['scroll-wrapper']}`}>
                     {
                         similars.map(movie => {
                             return <div onClick={() => movieDetailHandler(movie.id)} role='button' className={`mb-5 ${styles['scroll-wrapper-item']}`} key={movie.id}>

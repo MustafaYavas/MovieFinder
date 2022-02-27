@@ -33,7 +33,7 @@ const MovieItem = (props) => {
                 <div className={styles['card-width']}>
                     <div className='card mb-4 shadow-lg rounded position-relative'>
                         <img src={!poster ? noImg : `https://www.themoviedb.org/t/p/w220_and_h330_face/${poster}`} className='card-img-top'  alt="movie_img" />
-                        <h4 className='text-center position-absolute top-0 end-0'><span className='badge bg-danger rounded-circle p-3'>{rate}</span></h4>
+                        <h4 className='text-center position-absolute top-0 end-0'><span className='badge bg-danger p-2'>{rate}</span></h4>
                         <div className='card-body'>
                             <h5 className='card-title text-center my-auto' style={{height: '4.5rem'}}>{title}</h5>
                         </div>
