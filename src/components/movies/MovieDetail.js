@@ -36,6 +36,10 @@ const MovieDetail = (props) => {
         navigate(`/movie/${id}`, { replace: false });
     }
 
+    const navigateHomeHandler = () => {
+        navigate('/home', { replace: true })
+    }
+
 
     useEffect(() => {
         setTimeout(() => {
@@ -52,6 +56,10 @@ const MovieDetail = (props) => {
                         {!movie.poster_path && <LoadingSpinner />}
                         {movie.poster_path && 
                         <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`} alt='movie_img' />}
+                        <button onClick={navigateHomeHandler} className={`mt-1 rounded ${styles['back-button']}`}>
+                            <i className='fa-solid fa-arrow-left-long'></i>
+                            &#160; back home
+                        </button>
                     </div>
 
                     <div className='col-12 col-md-8 col-lg-9 mt-3 text-light'>
@@ -100,7 +108,8 @@ const MovieDetail = (props) => {
                         <ReactPlayer 
                             url={`https://www.youtube.com/watch?v=${videos.key}`} 
                             controls
-                            width='75%'
+                            width='100%'
+                            height='480px'
                         />
                     </div>
                 </div>
