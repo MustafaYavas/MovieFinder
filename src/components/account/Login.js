@@ -3,7 +3,8 @@ import styles from './Login.module.css';
 import { useState, useRef } from 'react';
 import {useNavigate } from 'react-router-dom';
 import { authActions } from '../../store/auth-slice';
-import { useDispatch } from "react-redux"
+import { useDispatch } from 'react-redux'
+
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -53,11 +54,9 @@ const Login = () => {
                     throw new Error(data.error.message);
                 }
                 const data = await response.json();
-                const expirationTime = new Date(new Date().getTime() + (+data.expiresIn * 1000))
                 dispatch(authActions.loginHandler({
                     token: data.idToken,
                     email: enteredEmail,
-                    expirationTime: expirationTime.toISOString()
                 }));
 
                 navigate('/home', { replace: true });
