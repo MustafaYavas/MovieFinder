@@ -4,7 +4,10 @@
 
 @media only screen and (max-width: 768px) {
     .center-img {
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
 }
