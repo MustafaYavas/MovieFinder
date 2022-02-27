@@ -2,6 +2,15 @@
     background-color: #4C4C4C
 }
 
+@media only screen and (max-width: 768px) {
+    .center-img {
+      text-align: center;
+    }
+
+}
+
+
+
 .scroll-wrapper{
     height: 20rem;
     display: flex;
@@ -22,3 +31,4 @@
 .img-radius{
     border-radius: .25rem;
 }
+

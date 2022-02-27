@@ -13,8 +13,7 @@ import { useNavigate } from 'react-router-dom';
 const MovieDetail = (props) => {
     const {movie, similars, genres, videos} = props;
     const [showAlert, setShowAlert] = useState(false);
-    const [videoSize, setVideoSize] = useState({width: '640px', height: '360px'});
-    
+
     const authState = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate()
@@ -37,20 +36,6 @@ const MovieDetail = (props) => {
         navigate(`/movie/${id}`, { replace: false });
     }
 
-    const videoStartHandler = () => {
-        setVideoSize({
-            width: '1080px',
-            height: '540px'
-        })
-    }
-
-    const videoEndHandler = () => {
-        setVideoSize({
-            width: '640px',
-            height: '360px'
-        })
-    }
-
 
     useEffect(() => {
         setTimeout(() => {
@@ -63,7 +48,7 @@ const MovieDetail = (props) => {
             {showAlert && <Alert message='Movie Added to List'/>}
             <div className={`container-fluid ${styles['bg-color']}`}>
                 <div className='row'>
-                    <div className='col-12 col-md-4 col-lg-3 p-3 my-auto'>
+                    <div className={`col-12 col-md-4 col-lg-3 p-3 my-auto ${styles['center-img']}`}>
                         {!movie.poster_path && <LoadingSpinner />}
                         {movie.poster_path && 
                         <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`} alt='movie_img' />}
@@ -110,34 +95,33 @@ const MovieDetail = (props) => {
 
             <div className='container-fluid mt-5'>
                 <h3 className='text-danger'>Official Trailer</h3>
-                <div className='mt-3'>
-                    <ReactPlayer 
-                        url={`https://www.youtube.com/watch?v=${videos.key}`} 
-                        controls
-                        width={videoSize.width}
-                        height={videoSize.height}
-                        onStart={videoStartHandler}
-                        onPlay={videoStartHandler}
-                        onEnded={videoEndHandler}
-                        onPause={videoEndHandler}
-                    />
+                <div className='row col-12'>
+                    <div className='mt-3'>
+                        <ReactPlayer 
+                            url={`https://www.youtube.com/watch?v=${videos.key}`} 
+                            controls
+                            width='75%'
+                        />
+                    </div>
                 </div>
             </div>
 
 
             <div className='container-fluid mt-5'>
                 <h3 className='text-danger'>Similar Movies</h3>
-                <div className={`mt-3 ${styles['scroll-wrapper']}`}>
-                    {
-                        similars.map(movie => {
-                            return <div onClick={() => movieDetailHandler(movie.id)} role='button' className={`mb-5 ${styles['scroll-wrapper-item']}`} key={movie.id}>
-                            <div className="mb-4">
-                                <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`} className={`card-img-top ${styles['img-radius']}`} alt="Movie Img"/>
-                                
+                <div className='row'>
+                    <div className={`mt-3 col-12 ${styles['scroll-wrapper']}`}>
+                        {
+                            similars.map(movie => {
+                                return <div onClick={() => movieDetailHandler(movie.id)} role='button' className={`mb-5 ${styles['scroll-wrapper-item']}`} key={movie.id}>
+                                <div className="mb-4">
+                                    <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`} className={`card-img-top ${styles['img-radius']}`} alt="Movie Img"/>
+                                    
+                                </div>
                             </div>
-                        </div>
-                        })
-                    }
+                            })
+                        }
+                    </div>
                 </div>
             </div>
 
