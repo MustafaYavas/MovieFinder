@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const MovieItem = (props) => {
-    const {id, poster, title, rate} = props;
+    const {id, poster, title} = props;
     
     const [showAlert, setShowAlert] = useState(false);
     const navigate = useNavigate()
@@ -29,13 +29,13 @@ const MovieItem = (props) => {
         <>
             {showAlert && <Alert message='Movie Added to List'/>}
 
-            <div onClick={movieDetailHandler} role='button' className={`col-sm-6 col-md-4 col-lg-3 mt-5 mb-5 ${styles['card-flex']} ${styles['card-hover']}`}>
+            <div className={`col-sm-6 col-md-4 col-lg-2 mt-5 text-light ${styles['card-flex']} ${styles['card-hover']}`}>
                 <div className={styles['card-width']}>
-                    <div className='card mb-4 shadow-lg rounded position-relative'>
-                        <img src={!poster ? noImg : `https://www.themoviedb.org/t/p/w220_and_h330_face/${poster}`} className='card-img-top'  alt="movie_img" />
-                        <h4 className='text-center position-absolute top-0 end-0'><span className='badge bg-danger p-2'>{rate}</span></h4>
+                    <div className={`card mb-4 ${styles['card-wrapper']}`}>
+                        <img  onClick={movieDetailHandler} role='button' src={!poster ? noImg : `https://www.themoviedb.org/t/p/w220_and_h330_face/${poster}`} className={`card-img-top ${styles['img-radius']}`}  alt="movie_img" />
+                        
                         <div className='card-body'>
-                            <h5 className='card-title text-center my-auto' style={{height: '4.5rem'}}>{title}</h5>
+                            <h6 className='card-title text-center my-auto'>{title}</h6>
                         </div>
                     </div>
                 </div>

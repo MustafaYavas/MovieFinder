@@ -1,12 +1,37 @@
-@media only screen and (max-width: 578px) {
+@media only screen and (max-width: 992px) {
     .center-header {
-      text-align:center;
+      text-align: center;
+      margin-bottom: 1rem;
     }
 
-    .center-select {
-        display: flex;
-        justify-content: center;
+    .center-selector {
+      width: 50%;
+      margin: 0 auto;
     }
+}
 
-    
+@media only screen and (min-width: 992px) {
+  .selector-margin-left {
+    margin-left: -4rem;
+  }
+}
+
+
+.button-container {
+  border: 1px solid #B7221D;
+  border-radius: 2rem;
+  
+}
+
+.button-container button {
+  border: none;
+  background-color: transparent;
+  color: #B7221D;
+  border-radius: 2rem;
+  height: 100%;
+  padding: 0 2rem;
+}
+
+.button-container button:hover {
+  color: #ff0800;
 }

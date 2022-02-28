@@ -7,12 +7,12 @@ const Layout = (props) => {
     const location = useLocation();
     
     return (
-        <>
+        <div style={{backgroundColor: '#111111'}}>
             <MainNavigation />
             {location.pathname === '/home' ? <Hero /> : null}
             <main>{props.children}</main>
             <Footer />
-        </>
+        </div>
     )
 }
 

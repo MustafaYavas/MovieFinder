@@ -9,3 +9,12 @@
     }
     
 }
+
+.card-wrapper {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.img-radius {
+    border-radius: 2rem !important;
+}

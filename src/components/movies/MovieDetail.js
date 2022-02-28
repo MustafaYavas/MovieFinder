@@ -123,14 +123,13 @@ const MovieDetail = (props) => {
             </div>
 
 
-           <div className='container-fluid mt-5'>
+           <div className='container-fluid mt-5 text-light'>
                 <h3 className='text-danger'>Similars</h3>
                 <Swiper
                     className='mt-3 pb-5'
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
                     slidesPerView={7}
                     navigation
-                    pagination={{ clickable: true }}
                 >
                     {
                         similars.map((movie) => (

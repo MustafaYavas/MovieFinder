@@ -16,8 +16,8 @@ const SearchBar = () => {
 
     return (
         <form className='position-relative'>
-            <div className={`mb-3 w-50 position-absolute top-50 start-50 translate-middle ${styles['input-container']}`}>
-                <input type="text" onChange={inputChangeHandler} ref={inputRef} className={`form-control p-3 shadow bg-body rounded fw-bold ${styles.input}`} id="movie" aria-describedby="movie" placeholder='Search Movie'/>
+            <div className={`mb-3 w-50 position-absolute top-50 start-50 translate-middle  ${styles['input-container']}`}>
+                <input autoFocus type="text" onChange={inputChangeHandler} ref={inputRef} className={`form-control bg-dark fw-bold text-light ${styles.input}`} id="movie" aria-describedby="movie" placeholder='Search Movie'/>
             </div>
         </form>
     )
