@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 const Movies = () => {
     const dispatch = useDispatch();
     const movieState = useSelector(state => state.movie);
-    const [startingMovies, setStartingMovies] = useState('Populars');
+    const [movieTypeHeader, setMovieTypeHeader] = useState('Populars');
     const [buttonClass, setButtonClass] = useState('bg-danger text-light')
     const [header, setHeader] = useState('Populars Recently');
     const [isLoading, setIsLoading] = useState(false);
@@ -23,13 +23,13 @@ const Movies = () => {
             let response;
             if(movieState.searchKey.length === 0) {
                 setButtonClass('bg-danger text-light')
-                if(startingMovies === 'Populars'){
+                if(movieTypeHeader === 'Populars'){
                     response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
                     setHeader('Popular Movies');
-                } else if(startingMovies === 'Top Rated') {
+                } else if(movieTypeHeader === 'Top Rated') {
                     response = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
                     setHeader('Top Rated Movies');
-                } else if(startingMovies === 'Upcoming') {
+                } else if(movieTypeHeader === 'Upcoming') {
                     response = await axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
                     setHeader('Upcoming Movies');
                 } else {
@@ -46,15 +46,14 @@ const Movies = () => {
             setIsLoading(false);
         }
         getMovieResults();
-        
-    }, [movieState.searchKey, dispatch, startingMovies]);
+    }, [movieState.searchKey, dispatch, movieTypeHeader]);
 
     const startingMoviesHandler = (e) => {
-        setStartingMovies(e.target.value);
+        setMovieTypeHeader(e.target.value);
     }
 
     const selectTypeHandler = (e) => {
-        setStartingMovies(e.target.innerText.trim());
+        setMovieTypeHeader(e.target.innerText.trim());
         setButtonClass('bg-danger text-light')
     }
 
@@ -67,16 +66,16 @@ const Movies = () => {
                         <h3 className="text-danger">{movieState.searchKey ? 'Search Results' : header}</h3>
                     </div>
                     <div className={`col-12 col-lg-8 px-0 w-auto flaot-end d-none d-md-block ${styles['button-container']} ${styles['center-selector']} ${styles['selector-margin-left']}`}>
-                        <button onClick={selectTypeHandler} className={startingMovies==='Populars' ? buttonClass : ''}>
+                        <button onClick={selectTypeHandler} className={movieTypeHeader==='Populars' ? buttonClass : ''}>
                             Populars
                         </button>
-                        <button onClick={selectTypeHandler} className={startingMovies==='Top Rated' ? buttonClass : ''}>
+                        <button onClick={selectTypeHandler} className={movieTypeHeader==='Top Rated' ? buttonClass : ''}>
                             Top Rated
                         </button>
-                        <button onClick={selectTypeHandler} className={startingMovies==='Upcoming' ? buttonClass : ''}>
+                        <button onClick={selectTypeHandler} className={movieTypeHeader==='Upcoming' ? buttonClass : ''}>
                             Upcoming
                         </button>
-                        <button onClick={selectTypeHandler} className={startingMovies==='Now Playing' ? buttonClass : ''}>
+                        <button onClick={selectTypeHandler} className={movieTypeHeader==='Now Playing' ? buttonClass : ''}>
                             Now Playing
                         </button>
                     </div>
@@ -95,7 +94,7 @@ const Movies = () => {
 
                 <div className='row'>
                     {isLoading && <LoadingSpinner/>}
-                    {(!isLoading && !movieState.startingPageMovies) || 
+                    {!isLoading && 
                         movieState.startingPageMovies.map(movie => (
                             <MovieItem 
                                 key={movie.id}
@@ -107,7 +106,7 @@ const Movies = () => {
                         ))
                     }
                     {
-                        (!isLoading && !movieState.startingPageMovies) || <p className='text-center mt-5 text-danger fs-1'>No movies found!</p>
+                        (movieState.searchKey.length>0 && movieState.startingPageMovies.length===0) && <p className='text-center mt-5 text-danger fs-1'>No movies found!</p>
                     }
                 </div>
             </div>
