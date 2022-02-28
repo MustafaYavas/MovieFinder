@@ -9,6 +9,13 @@ import ReactTooltip from "react-tooltip";
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SwiperSlide, Swiper } from 'swiper/react';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 const MovieDetail = (props) => {
     const {movie, similars, genres, videos} = props;
@@ -116,23 +123,26 @@ const MovieDetail = (props) => {
             </div>
 
 
-            <div className='container-fluid mt-5'>
-                <h3 className='text-danger'>Similar Movies</h3>
-                <div className='row'>
-                    <div className={`mt-3 col-12 ${styles['scroll-wrapper']}`}>
-                        {
-                            similars.map(movie => {
-                                return <div onClick={() => movieDetailHandler(movie.id)} role='button' className={`mb-5 ${styles['scroll-wrapper-item']}`} key={movie.id}>
-                                <div className="mb-4">
-                                    <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`} className={`card-img-top ${styles['img-radius']}`} alt="Movie Img"/>
-                                    
+           <div className='container-fluid mt-5'>
+                <h3 className='text-danger'>Similars</h3>
+                <Swiper
+                    className='mt-3 pb-5'
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    slidesPerView={7}
+                    navigation
+                    pagination={{ clickable: true }}
+                >
+                    {
+                        similars.map((movie) => (
+                            <SwiperSlide key={movie.id}>
+                                <div className='card'>
+                                    <img onClick={() => movieDetailHandler(movie.id)} role='button' className='card-img-top rounded' src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}  alt="Movie Img"/>
                                 </div>
-                            </div>
-                            })
-                        }
-                    </div>
-                </div>
-            </div>
+                            </SwiperSlide>
+                        ))
+                    }
+                </Swiper>
+           </div>
 
         </>
     )

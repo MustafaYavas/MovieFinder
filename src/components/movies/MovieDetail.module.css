@@ -20,25 +20,3 @@
 .back-button:hover {
     color: white
 }
-
-.scroll-wrapper{
-    height: 20rem;
-    display: flex;
-    overflow-x: auto;
-}
-
-
-.scroll-wrapper-item{
-    min-width: 11rem;
-    height: 11rem;
-    line-height: 11rem;
-    margin-right: 1rem;
-}
-
-
-/* image radius */
-
-.img-radius{
-    border-radius: .25rem;
-}
-
