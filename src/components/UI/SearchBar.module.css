@@ -6,3 +6,13 @@
     padding: .75rem;
     font-weight: bold;
 }
+
+.input-margin {
+    margin-top: -7rem;
+    margin-bottom: 8rem;
+}
+
+.icon-position {
+    margin-left: -1rem;
+    cursor: pointer;
+}

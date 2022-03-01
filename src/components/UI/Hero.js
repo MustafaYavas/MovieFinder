@@ -4,14 +4,11 @@ import SearchBar from './SearchBar';
 const Hero = () => {
     return (
         <>
-            <div className={`text-danger d-flex flex-column justify-content-center align-items-center ${styles['hero-img']}`}>
-                <div>
-                    <i className="fab fa-galactic-senate fs-4 text-warning my-3 mx-3" />
-                    <i className="fas fa-user-astronaut fs-4 text-secondary my-3 mx-3" />
-                    <i className="fab fa-jedi-order fs-4 text-primary my-3 mx-3" />
-                </div>
-                <h1>Search Movies</h1>
+            <div  className={`${styles['hero-height']} ${styles['hero-img']}`}>
+                <h3 className='text-light text-center pt-5'>Welcome.</h3>
+                <h3 className='text-light text-center pt-3'>Search movies and create your list!</h3>
             </div>
+                                
             <SearchBar />
         </>
     )

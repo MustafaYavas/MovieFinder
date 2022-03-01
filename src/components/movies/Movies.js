@@ -25,13 +25,13 @@ const Movies = () => {
                 setButtonClass('bg-danger text-light')
                 if(movieTypeHeader === 'Populars'){
                     response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-                    setHeader('Popular Movies');
+                    setHeader('Populars');
                 } else if(movieTypeHeader === 'Top Rated') {
                     response = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-                    setHeader('Top Rated Movies');
+                    setHeader('Top Rated');
                 } else if(movieTypeHeader === 'Upcoming') {
                     response = await axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-                    setHeader('Upcoming Movies');
+                    setHeader('Upcoming');
                 } else {
                     response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
                     setHeader('Now Playing');
