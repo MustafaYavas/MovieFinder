@@ -13,6 +13,8 @@
 }
 
 .icon-position {
-    margin-left: -1rem;
     cursor: pointer;
+    position: absolute;
+    top: 11px;
+    right: 10px;
 }
