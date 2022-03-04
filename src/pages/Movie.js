@@ -27,13 +27,7 @@ const Movie = () => {
             setMovieVideos([]);
             setCast(cast.data.cast.slice(0,10));
             
-            setGenres(movieInfos.data.genres);
-
-            // for(let i=0; i< movieInfos.data.genres.length; i++){
-            //     if(i===movieInfos.data.genres.length-1) setGenres(prevState => prevState + movieInfos.data.genres[i].name);
-            //     else setGenres(prevState => prevState + `${movieInfos.data.genres[i].name}, `)
-            // }
-
+            setGenres(movieInfos.data.genres.slice(0,3));
 
             for(let i=0; i<videos.data.results.length; i++){
                 if(videos.data.results[i].type === 'Trailer') {
@@ -44,7 +38,7 @@ const Movie = () => {
             
         }
         
-        fetchMovieDetail()
+        fetchMovieDetail();
         
     }, [params.id])
     
