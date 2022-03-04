@@ -24,3 +24,7 @@
     text-align: center;
   }
 }
+
+.img-radius {
+  border-radius: 1rem;
+}

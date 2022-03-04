@@ -41,12 +41,12 @@ const UserProfile = () => {
     
     return (
         <>
-            <div className="container">
-                <div className="row mt-5">
+            <div className='container text-light'>
+                <div className='row mt-5'>
                     <div className='col-sm-12 mb-5 border-bottom border-danger'>
                         <h1 className='text-danger text-center'>Your Account</h1>
                     </div>
-                    <div className="col-sm-12 col-md-4  d-flex justify-content-center">
+                    <div className='col-sm-12 col-md-4  d-flex justify-content-center'>
                         <img className='border rounded bg-danger' src={profileImg} alt='profile_img'/>
                     </div>
 
