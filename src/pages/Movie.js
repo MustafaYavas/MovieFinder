@@ -10,6 +10,7 @@ const Movie = () => {
     const [similarMovies, setSimilarMovies] = useState([])
     const [movieVideos, setMovieVideos] = useState([])
     const [genres, setGenres] = useState('');
+    const [cast, setCast] = useState([]);
     
     useEffect( () => {
         let fetchMovieDetail = async () => {
@@ -19,16 +20,19 @@ const Movie = () => {
 
             const videos = await axios.get(`https://api.themoviedb.org/3/movie/${params.id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
 
+            const cast = await axios.get(`https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
+
             setMovie(movieInfos.data);
             setSimilarMovies(similar.data.results);
             setMovieVideos([]);
+            setCast(cast.data.cast.slice(0,10));
+            
+            setGenres(movieInfos.data.genres);
 
-            setGenres('');
-
-            for(let i=0; i< movieInfos.data.genres.length; i++){
-                if(i===movieInfos.data.genres.length-1) setGenres(prevState => prevState + movieInfos.data.genres[i].name);
-                else setGenres(prevState => prevState + `${movieInfos.data.genres[i].name}, `)
-            }
+            // for(let i=0; i< movieInfos.data.genres.length; i++){
+            //     if(i===movieInfos.data.genres.length-1) setGenres(prevState => prevState + movieInfos.data.genres[i].name);
+            //     else setGenres(prevState => prevState + `${movieInfos.data.genres[i].name}, `)
+            // }
 
 
             for(let i=0; i<videos.data.results.length; i++){
@@ -46,7 +50,7 @@ const Movie = () => {
     
 
     return (
-        <MovieDetail movie={movie} similars={similarMovies} genres={genres} videos={movieVideos}/>
+        <MovieDetail movie={movie} similars={similarMovies} genres={genres} videos={movieVideos} cast={cast}/>
     )
 }
 
