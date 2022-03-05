@@ -7,7 +7,7 @@
     }
 
     .bg-margin {
-        margin-bottom: 55rem !important;
+        margin-bottom: 50rem !important;
     }
 
     .row-margin-img {
@@ -26,11 +26,6 @@
     }
 }
 
-@media only screen and (min-width: 500px) {
-    .similar-content-margin {
-        margin-top: 10rem !important;
-    }
-}
 
 @media only screen and (min-width: 768px) {
     .row-margin-img {
@@ -42,7 +37,7 @@
     }
 
     .bg-margin {
-        margin-bottom: 40rem !important;
+        margin-bottom: 30rem !important;
     }
 }
 
@@ -51,7 +46,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 50vh;
+    height: 70vh;
 }
 
 .img-radius {
@@ -89,4 +84,12 @@
 
 .back-button:hover {
     border: 1px solid white;
+}
+
+.card-border {
+    border: none;
+}
+
+.slide-margin {
+    margin-top: 5rem !important;
 }

@@ -6,7 +6,7 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 
 import ReactTooltip from 'react-tooltip';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
@@ -19,10 +19,12 @@ import 'swiper/css/scrollbar';
 const MovieDetail = (props) => {
     const {movie, similars, genres, videos, cast} = props;
     const [showAlert, setShowAlert] = useState(false);
-    
+    const videoRef = useRef(null);
+
     const authState = useSelector(state => state.auth);
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
 
     const addMovieToListHandler = () => {
         if(authState.isLoggedIn) {
@@ -48,6 +50,11 @@ const MovieDetail = (props) => {
             setShowAlert(false)
         }, 2000)
     }, [showAlert])
+
+    useEffect(() => {
+        const height = videoRef.current.offsetWidth * 9/16 + 'px';
+        videoRef.current.setAttribute('height', height);
+    }, [])
 
     return (
         <>
@@ -144,8 +151,23 @@ const MovieDetail = (props) => {
             }
 
 
-           <div className='container text-light'>
-                <h3 className='text-danger'>Similars</h3>
+            <div className='container'>
+                <h3 className='text-light'>Official Trailer</h3>
+                <div className='row col-12 mt-3'>
+                    <div>
+                        <iframe 
+                            src={`https://www.youtube.com/embed/${videos.key}`}
+                            ref={videoRef}
+                            width='100%'
+                            title='trailer'
+                        />
+                    </div>
+                </div>
+            </div>
+
+
+           <div className={`container text-light ${styles['slide-margin']}`}>
+                <h3>Similars</h3>
                 <Swiper
                     className='mt-3 pb-5'
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -156,8 +178,8 @@ const MovieDetail = (props) => {
                         similars.map((movie) => (
                             <SwiperSlide key={movie.id}>
                                 <Link to={`/movie/${movie.id}`}>
-                                    <div className='card me-2'>
-                                        <img className='card-img-top rounded' src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}  alt='Movie Img'/>
+                                    <div className={`card me-2 ${styles['card-border']}`} >
+                                        <img className={`card-img-top ${styles['img-radius']}`} src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}  alt='Movie Img'/>
                                     </div>
                                 </Link>
                             </SwiperSlide>
