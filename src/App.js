@@ -3,6 +3,7 @@ import Profile from './pages/Profile';
 import MyList from './pages/MyList';
 import Movie from './pages/Movie';
 import Login from './components/account/Login';
+import Person from './pages/Person/Person';
 import NoPageFound from './components/UI/NoPageFound';
 import Layout from './components/layout/Layout';
 
@@ -38,6 +39,8 @@ const App = () => {
                 <Route path='/home' element={<HomePage />} />
                 <Route path='/login' element={<Login />}/>
                 <Route path='/movie/:id' element={<Movie />} />
+                <Route path='/person/:id' element={<Person />} />
+                {/* <Route path='/person/:id' element={!authState.isLoggedIn ? <Navigate replace to='/login' /> : <Person />}/> */}
                 <Route path='/profile' element={!authState.isLoggedIn ? <Navigate replace to='/login' /> : <Profile />}/>
                 <Route path='/my-list' element={!authState.isLoggedIn ? <Navigate replace to='/login' /> : <MyList />}/>
                 

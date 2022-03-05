@@ -7,7 +7,7 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 import ReactTooltip from 'react-tooltip';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 
@@ -19,7 +19,7 @@ import 'swiper/css/scrollbar';
 const MovieDetail = (props) => {
     const {movie, similars, genres, videos, cast} = props;
     const [showAlert, setShowAlert] = useState(false);
-
+    
     const authState = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate()
@@ -36,10 +36,6 @@ const MovieDetail = (props) => {
         } else {
             alert('Please Login!');
         }
-    }
-
-    const movieDetailHandler = (id) => {
-        navigate(`/movie/${id}`, { replace: false });
     }
 
     const navigateHomeHandler = () => {
@@ -63,7 +59,7 @@ const MovieDetail = (props) => {
 
                     <div className='container'>
                         <div className='row'>
-                            <div className={`col-12 col-md-4 col-lg-3 ${styles['center-img']} ${styles['row-margin-img']} ${styles['row-margin-img-md']}`}>
+                            <div className={`col-12 col-md-4 col-lg-3 ${styles['center-img']} ${styles['row-margin-img']}`}>
                                 {
                                     movie.poster_path &&  <img className={`${styles['img-radius']} ${styles['img-size']}`} src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt='movie_img' />
                                 }
@@ -74,7 +70,7 @@ const MovieDetail = (props) => {
                                     <h2>{movie.original_title}</h2>
                                     <button onClick={navigateHomeHandler} className={`mt-1 rounded ${styles['back-button']}`}>
                                         <i className='fa-solid fa-arrow-left-long'></i>
-                                        &#160; back
+                                        &#160; home
                                     </button>
                                 </div>
                                 
@@ -127,12 +123,14 @@ const MovieDetail = (props) => {
                                         scrollbar={{ draggable: true }}
                                     >
                                         {
-                                            cast.map((item, index) => (
-                                                <SwiperSlide key={index}>
-                                                    <div className={`card ${styles['cast-card']}`}>
-                                                        <img className='card-img-top rounded' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`} alt='cast-img'/>
-                                                        <p>{item.name}</p>
-                                                    </div>
+                                            cast.map((item) => (
+                                                <SwiperSlide key={item.id}>
+                                                    <Link to={`/person/${item.id}`} className='text-decoration-none text-light'>
+                                                        <div className={`card ${styles['cast-card']}`}>
+                                                            <img className='card-img-top rounded' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`} alt='cast-img'/>
+                                                            <p>{item.name}</p>
+                                                        </div>
+                                                    </Link>
                                                 </SwiperSlide>
                                             ))
                                         }
@@ -157,9 +155,11 @@ const MovieDetail = (props) => {
                     {
                         similars.map((movie) => (
                             <SwiperSlide key={movie.id}>
-                                <div className='card me-2'>
-                                    <img onClick={() => movieDetailHandler(movie.id)} role='button' className='card-img-top rounded' src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}  alt='Movie Img'/>
-                                </div>
+                                <Link to={`/movie/${movie.id}`}>
+                                    <div className='card me-2'>
+                                        <img className='card-img-top rounded' src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}  alt='Movie Img'/>
+                                    </div>
+                                </Link>
                             </SwiperSlide>
                         ))
                     }
