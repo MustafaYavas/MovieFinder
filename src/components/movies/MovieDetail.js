@@ -64,7 +64,7 @@ const MovieDetail = (props) => {
 
                             <div className={`col-12 col-md-4 col-lg-3 ${styles['center-img']}`}>
                                 {
-                                    movie.poster_path &&  <img className={`${styles['img-radius']} ${styles['bg-img-size']}`} src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt='movie_img' />
+                                    movie.poster_path &&  <img className={`${styles['img-radius']} ${styles['poster-size']}`} src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt='movie_img' />
                                 }
                             </div>
 
