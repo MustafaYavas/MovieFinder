@@ -67,11 +67,22 @@ const Person = () => {
     }
 
     const calculateAge = (birthday) => { 
-        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-        ];
-        let ageDif = Date.now() - birthday.getTime();
-        let ageDate = new Date(ageDif); 
-        return `${birthday.getDate()} ${monthNames[birthday.getMonth()]} ${birthday.getUTCFullYear()} ( ${Math.abs(ageDate.getUTCFullYear() - 1970)} years old )`;
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        const ageDif = Date.now() - birthday.getTime();
+        const ageDate = new Date(ageDif); 
+        const bornDate = `${birthday.getDate()} ${monthNames[birthday.getMonth()]} ${birthday.getUTCFullYear()}`;
+        const age = person.deathday !== null ? '' : `( ${Math.abs(ageDate.getUTCFullYear() - 1970)} years old )`;
+        
+        return `${bornDate} ${age}`;
+    }
+
+    const reformatDate = (date) => {
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const dateArr = date.split('-')
+        const d = new Date(dateArr[0], dateArr[1], dateArr[2]);
+
+        return `${d.getDate()} ${monthNames[d.getMonth()]} ${d.getUTCFullYear()}`;
     }
 
     return (
@@ -97,8 +108,12 @@ const Person = () => {
 
                     <div className='mt-2'>
                         <p>Born: {person.place_of_birth}</p>
-                        {/* {person.birthday && <p>Age: {new Date().getFullYear() - parseInt(person.birthday.substring(0,4))}</p> } */}
-                        {person.birthday && <p>Date of Birth: {calculateAge(new Date(person.birthday))}</p> }
+                        {
+                            person.birthday && <p>Date of Birth: {calculateAge(new Date(person.birthday))}</p> 
+                        }
+                        {
+                            person.deathday && <p>Date of Death: {reformatDate(person.deathday)}</p>
+                        }
                     </div>
 
                     <div className='mt-2'>

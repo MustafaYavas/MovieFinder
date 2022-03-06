@@ -171,14 +171,14 @@ const MovieDetail = (props) => {
                 <Swiper
                     className='mt-3 pb-5'
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    slidesPerView={7}
+                    slidesPerView={6}
                     navigation
                 >
                     {
                         similars.map((movie) => (
                             <SwiperSlide key={movie.id}>
                                 <Link to={`/movie/${movie.id}`}>
-                                    <div className={`card me-2 ${styles['card-border']}`} >
+                                    <div className={`card me-2 bg-transparent ${styles['card-border']}`} >
                                         <img className={`card-img-top ${styles['img-radius']}`} src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}  alt='Movie Img'/>
                                     </div>
                                 </Link>

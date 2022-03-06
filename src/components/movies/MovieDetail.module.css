@@ -50,7 +50,7 @@
 }
 
 .img-radius {
-    border-radius: 2rem;
+    border-radius: 2rem !important;
 }
 
 .img-size {
