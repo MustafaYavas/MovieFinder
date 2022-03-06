@@ -51,28 +51,24 @@ const MovieDetail = (props) => {
         }, 2000)
     }, [showAlert])
 
-    useEffect(() => {
-        const height = videoRef.current.offsetWidth * 9/16 + 'px';
-        videoRef.current.setAttribute('height', height);
-    }, [])
-
     return (
         <>
             {showAlert && <Alert message='Movie Added to List'/>}
             
             { !movie.backdrop_path && <LoadingSpinner /> }
             { movie.backdrop_path &&
-                <div className={`${styles['bg-img']} ${styles['bg-margin']}`} style={{backgroundImage: `linear-gradient(to bottom, rgba(17,17,17, .1), rgba(17,17,17, 1)), url(https://image.tmdb.org/t/p/original/${movie.backdrop_path || movie.poster})`}}>
+                <div className={styles['bg-img']} style={{backgroundImage: `linear-gradient(to bottom, rgba(17,17,17, .1), rgba(17,17,17, 1)), url(https://image.tmdb.org/t/p/original/${movie.backdrop_path || movie.poster})`}}>
 
                     <div className='container'>
-                        <div className='row'>
-                            <div className={`col-12 col-md-4 col-lg-3 ${styles['center-img']} ${styles['row-margin-img']}`}>
+                        <div className={`row ${styles['row-padding-top']}`}>
+
+                            <div className={`col-12 col-md-4 col-lg-3 ${styles['center-img']}`}>
                                 {
-                                    movie.poster_path &&  <img className={`${styles['img-radius']} ${styles['img-size']}`} src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt='movie_img' />
+                                    movie.poster_path &&  <img className={`${styles['img-radius']} ${styles['bg-img-size']}`} src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt='movie_img' />
                                 }
                             </div>
 
-                            <div className={`col-12 col-md-8 col-lg-9 text-light ${styles['row-margin-content']} ${styles['row-margin-content-md']} ${styles['center-content']}`}>
+                            <div className='col-12 col-md-8 col-lg-9 text-light mt-5 mt-md-0'>
                                 <div className='d-flex justify-content-between align-items-center'>
                                     <h2>{movie.original_title}</h2>
                                     <button onClick={navigateHomeHandler} className={`mt-1 rounded ${styles['back-button']}`}>
@@ -126,14 +122,14 @@ const MovieDetail = (props) => {
                                 <div className='d-flex justify-content-start align-items-start'>
                                     <Swiper
                                         modules={[Navigation, Pagination, Scrollbar, A11y]}
-                                        slidesPerView={6}
+                                        slidesPerView={5}
                                         scrollbar={{ draggable: true }}
                                     >
                                         {
                                             cast.map((item) => (
                                                 <SwiperSlide key={item.id}>
                                                     <Link to={`/person/${item.id}`} className='text-decoration-none text-light'>
-                                                        <div className={`card ${styles['cast-card']}`}>
+                                                        <div className={`card bg-transparent me-1`}>
                                                             <img className='card-img-top rounded' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`} alt='cast-img'/>
                                                             <p>{item.name}</p>
                                                         </div>
@@ -145,27 +141,53 @@ const MovieDetail = (props) => {
                                 </div>
 
                             </div>
+
+                            <div className={`${styles['video-margin-top']}`}>
+                                <h3 className='text-light'>Official Trailer</h3>
+                                <div className='row col-12 mt-3'>
+                                    <div>
+                                        <iframe 
+                                            src={`https://www.youtube.com/embed/${videos.key}`}
+                                            height= '540px'
+                                            width='100%'
+                                            title='trailer'
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className={`text-light ${styles['slide-margin-top']}`}>
+                                <h3>Similars</h3>
+                                <Swiper
+                                    className='mt-3'
+                                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                                    slidesPerView={5}
+                                >
+                                    {
+                                        similars.map((movie) => (
+                                            <SwiperSlide key={movie.id}>
+                                                <Link to={`/movie/${movie.id}`} className='text-light text-decoration-none text-center'>
+                                                    <div className={`card me-2 bg-transparent ${styles['card-border']}`} >
+                                                        <img className={`card-img-top ${styles['img-radius']}`} src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}  alt='Movie Img'/>
+                                                        <p className='mt-1'>{movie.original_title}</p>
+                                                    </div>
+                                                </Link>
+                                            </SwiperSlide>
+                                        ))
+                                    }
+                                </Swiper>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             }
 
 
-            <div className='container'>
-                <h3 className='text-light'>Official Trailer</h3>
-                <div className='row col-12 mt-3'>
-                    <div>
-                        <iframe 
-                            src={`https://www.youtube.com/embed/${videos.key}`}
-                            ref={videoRef}
-                            width='100%'
-                            title='trailer'
-                        />
-                    </div>
-                </div>
-            </div>
+            
 
-
+        {/*
            <div className={`container text-light ${styles['slide-margin']}`}>
                 <h3>Similars</h3>
                 <Swiper
@@ -186,7 +208,7 @@ const MovieDetail = (props) => {
                         ))
                     }
                 </Swiper>
-           </div>
+           </div> */}
 
         </>
     )
