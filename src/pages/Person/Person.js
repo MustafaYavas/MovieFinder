@@ -82,7 +82,7 @@ const Person = () => {
         const dateArr = date.split('-')
         const d = new Date(dateArr[0], dateArr[1], dateArr[2]);
 
-        return `${d.getDate()} ${monthNames[d.getMonth()]} ${d.getUTCFullYear()}`;
+        return `${d.getDate()} ${monthNames[d.getMonth()-1]} ${d.getUTCFullYear()}`;
     }
 
     return (
