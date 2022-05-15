@@ -59,7 +59,7 @@ const Login = () => {
                     email: enteredEmail,
                 }));
 
-                navigate('/home', { replace: true });
+                navigate(-1, { replace: true });
                 
             } catch (error) {
                 alert(error);
