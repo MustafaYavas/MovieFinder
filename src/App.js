@@ -36,13 +36,13 @@ const App = () => {
         <Layout>
             <Routes>
                 <Route path='/' element={<Navigate replace to='/home' />} /> 
-                <Route path='/home' element={<HomePage />} />
-                <Route path='/login' element={<Login />}/>
-                <Route path='/movie/:id' element={<Movie />} />
-                <Route path='/person/:id' element={<Person />} />
+                <Route path='home' element={<HomePage />} />
+                <Route path='login' element={<Login />}/>
+                <Route path='movie/:id' element={<Movie />} />
+                <Route path='person/:id' element={<Person />} />
                 
-                <Route path='/profile' element={!authState.isLoggedIn ? <Navigate replace to='/login' /> : <Profile />}/>
-                <Route path='/my-list' element={!authState.isLoggedIn ? <Navigate replace to='/login' /> : <MyList />}/>
+                <Route path='profile' element={!authState.isLoggedIn ? <Navigate replace to='/login' /> : <Profile />}/>
+                <Route path='my-list' element={!authState.isLoggedIn ? <Navigate replace to='/login' /> : <MyList />}/>
                 
                 <Route path="*" element={<NoPageFound />} />
             </Routes>
