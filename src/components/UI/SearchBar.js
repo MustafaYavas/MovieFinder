@@ -29,7 +29,7 @@ const SearchBar = () => {
         <>        
             <form className={`d-flex justify-content-center align-items-center ${styles['input-margin']}`}>
                 <div className=' w-50 position-relative'>
-                    <input autoFocus type="text" onChange={inputChangeHandler} value={inputText} className={`form-control bg-dark fw-bold text-light ${styles.input}`} id="movie" aria-describedby="movie" placeholder='Search Movie'/>
+                    <input autoFocus type='text' onChange={inputChangeHandler} value={inputText} className={`form-control bg-dark fw-bold text-light ${styles.input}`} id='movie' aria-describedby='movie' placeholder='Search Movie'/>
                     {showCloseButton && <i onClick={clearTextHandler} className={`fa-solid fa-xmark text-light ${styles['icon-position']}`}></i>}
                 </div>
             </form>

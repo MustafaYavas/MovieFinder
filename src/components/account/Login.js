@@ -68,35 +68,35 @@ const Login = () => {
 
     return (        
         <div className=' d-flex flex-column justify-content-center align-items-center'>
-            <h4 className="text-center text-danger mt-5 mb-3">{isLogin ? 'Login to MovieFinder' : 'Join Us!'}</h4>
+            <h4 className='text-center text-danger mt-5 mb-3'>{isLogin ? 'Login to MovieFinder' : 'Join Us!'}</h4>
 
             <form className={`rounded p-5 ${styles['form-bg']}`} onSubmit={authHandler}>
-                <div className="mb-3 form-group">
-                    <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="text" className="form-control" id="email"  ref={emailInputRef}/>
+                <div className='mb-3 form-group'>
+                    <label htmlFor='email' className='form-label'>Email address</label>
+                    <input type='text' className='form-control' id='email'  ref={emailInputRef}/>
                 </div>
 
                 {
                     !isLogin &&
-                    <div className="mb-3 form-group">
-                        <label htmlFor="name" className="form-label">Name</label>
-                        <input type="text" className="form-control" id="name" ref={nameInputRef} />
+                    <div className='mb-3 form-group'>
+                        <label htmlFor='name' className='form-label'>Name</label>
+                        <input type='text' className='form-control' id='name' ref={nameInputRef} />
                     </div> 
                 }
 
-                <div className="mb-3 form-group">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" ref={passwordInputRef}/>
+                <div className='mb-3 form-group'>
+                    <label htmlFor='password' className='form-label'>Password</label>
+                    <input type='password' className='form-control' id='password' ref={passwordInputRef}/>
                 </div>
 
-                <div className="mt-3">
+                <div className='mt-3'>
                     <p className='text-dark'> {isLogin ? "Don't have an account? " : 'Already have an account? '}
                         <a href='/' onClick={switchAuthModeHandler} className={styles.link}>{isLogin ? 'Sign up' : 'Log in'}</a>
                     </p>
                 </div>
 
-                <div className="col-12 text-center">
-                    <button type="submit" className="btn btn-danger">{!isLogin ? 'Sign up' : 'Login'}</button>
+                <div className='col-12 text-center'>
+                    <button type='submit' className='btn btn-danger'>{!isLogin ? 'Sign up' : 'Login'}</button>
                 </div>
             </form>
         </div>

@@ -25,7 +25,7 @@ const MovieItem = (props) => {
                     <div className={`${styles['card-width']}`}>
                         <Link to={`/movie/${id}`} className='text-decoration-none'>
                             <div className={`card mb-4 ${styles['card-wrapper']} `}>
-                                <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${poster}`} className={`card-img-top ${styles['img-radius']}`}  alt="movie_img" />
+                                <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${poster}`} className={`card-img-top ${styles['img-radius']}`}  alt='movie_img' />
                                 
                                 <div className='card-body text-light'>
                                     <h6 className={`card-title text-center my-auto`}>{title}</h6>

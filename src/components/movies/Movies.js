@@ -63,7 +63,7 @@ const Movies = () => {
             <div className='container'>
                 <div className='row'>
                     <div className={`col-12 col-lg-4 ${styles['center-header']}`}>
-                        <h3 className="text-danger">{movieState.searchKey ? 'Search Results' : header}</h3>
+                        <h3 className='text-danger'>{movieState.searchKey ? 'Search Results' : header}</h3>
                     </div>
                     <div className={`col-12 col-lg-8 px-0 w-auto flaot-end d-none d-md-block ${styles['button-container']} ${styles['center-selector']} ${styles['selector-margin-left']}`}>
                         <button onClick={selectTypeHandler} className={movieTypeHeader==='Populars' ? buttonClass : ''}>
@@ -83,7 +83,7 @@ const Movies = () => {
 
                 <div className={`${styles['center-select']}  col-12 d-flex justify-content-center align-items-center d-block d-md-none`}>
                     <div className='w-50'>
-                        <select  onChange={startingMoviesHandler} className='form-select bg-dark text-danger' aria-label="Default select example">
+                        <select  onChange={startingMoviesHandler} className='form-select bg-dark text-danger' aria-label='Default select example'>
                             <option value='popular'>Popular Movies</option>
                             <option value='top'>Top Rated</option>
                             <option value='up'>Upcoming</option>
