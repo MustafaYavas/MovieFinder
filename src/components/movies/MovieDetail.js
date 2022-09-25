@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SwiperSlide, Swiper } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { motion } from 'framer-motion';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -61,11 +62,15 @@ const MovieDetail = (props) => {
                     <div className='container'>
                         <div className={`row ${styles['row-padding-top']}`}>
 
-                            <div className={`col-12 col-md-4 col-lg-3 ${styles['center-img']}`}>
+                            <motion.div 
+                                className={`col-12 col-md-4 col-lg-3 ${styles['center-img']}`}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                            >
                                 {
                                     movie.poster_path &&  <img className={`${styles['img-radius']} ${styles['poster-size']}`} src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt='movie_img' />
                                 }
-                            </div>
+                            </motion.div>
 
                             <div className='col-12 col-md-8 col-lg-9 text-light mt-5 mt-md-0'>
                                 <div className='d-flex justify-content-between align-items-center'>

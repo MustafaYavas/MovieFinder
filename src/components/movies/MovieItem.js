@@ -3,6 +3,7 @@ import styles from './MovieItem.module.css'
 
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const MovieItem = (props) => {
     const {id, poster, title} = props;
@@ -21,7 +22,16 @@ const MovieItem = (props) => {
             {showAlert && <Alert message='Movie Added to List'/>}
             {
                 poster && 
-                <div className={`col-sm-6 col-md-4 col-lg-2 mt-5 text-light ${styles['card-flex']} ${styles['card-hover']}`}>
+                <motion.div 
+                    className={`col-sm-6 col-md-4 col-lg-2 mt-5 text-light ${styles['card-flex']} ${styles['card-hover']}`}
+                    initial={{ scale: 0 }}
+                    animate={{ rotate: 360, scale: 1 }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 20
+                    }}
+                >
                     <div className={`${styles['card-width']}`}>
                         <Link to={`/movie/${id}`} className='text-decoration-none'>
                             <div className={`card mb-4 ${styles['card-wrapper']} `}>
@@ -33,7 +43,7 @@ const MovieItem = (props) => {
                             </div>
                         </Link>
                     </div>
-                </div>
+                </motion.div>
             }
         </>
     )

@@ -4,6 +4,7 @@ import styles from './MyMovieList.module.css';
 
 import { useSelector, useDispatch} from 'react-redux';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const MyMovieList = () => {
     const authState = useSelector(state => state.auth);
@@ -40,10 +41,19 @@ const MyMovieList = () => {
             {showAlert && <Alert message='Movie Removed from List'/>}
             { 
                 movieList.length !== 0 && <div className='container'>
-                    <h2 className=' mt-5 text-danger border-bottom'>Your MovieFinder List</h2>
+                    <h2 className='mt-5 text-danger border-bottom'>Your MovieFinder List</h2>
                     {
                         movieList.map((movie) => (
-                            <div className='row mt-5 mb-3 p-3 bg-dark rounded text-light' key={movie.id}>
+                            <motion.div 
+                                className='row mt-5 mb-3 p-3 bg-dark rounded text-light box' key={movie.id}
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{
+                                  duration: 0.8,
+                                  delay: 0.5,
+                                  ease: [0, 0.71, 0.2, 1.01]
+                                }}
+                            >
                                 <div className={`col-sm-12 col-md-4 ${styles['center-img']}`}>
                                     <img className={`${styles['img-radius']}`} src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster}`}  alt='movie-poster'/>
                                 </div>
@@ -63,7 +73,7 @@ const MyMovieList = () => {
                                     <button className='btn btn-danger float-end' onClick={() => deleteFromListHandler(movie.id, authState.userEmail)} ><i className='fa-solid fa-xmark'></i></button>
                                 </div>
                                 {/* hidden xs and sm */}
-                            </div>
+                            </motion.div>
                         ))
                     }
                 </div>
