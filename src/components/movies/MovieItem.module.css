@@ -10,6 +10,10 @@
     
 }
 
+.card-hover:hover h6 {
+    color: #DC3545;
+}
+
 .card-wrapper {
     border: none !important;
     background-color: transparent !important;
